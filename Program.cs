@@ -1,21 +1,53 @@
 ﻿using static System.Console;
+using System.Text.RegularExpressions;
 public class Program
 {
     private static void Main(string[] args)
     {
-        string sey = "The sunset sets at twelve o' clock.";
-        var arr = new int[] {1, 2, 0, 1, 0, 1, 0, 3, 0, 1};
-        foreach (var item in MoveZeroes(arr))
-        {
-            Console.WriteLine(item);
-        }
-        //WriteLine(AlphabetPosition(sey));
-        //WriteLine(Disemvowel(sey));
-        //WriteLine(ToCamelCase(sey));
-        //WriteLine(ToJadenCase(sey));
-        //Console.WriteLine(DigitalRoot(16));
+        
     }
 
+    /// <summary>
+    /// https://www.codewars.com/kata/545cedaa9943f7fe7b000048
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static bool IsPangram(string str)
+    {
+        Dictionary<char, char> latters = new Dictionary<char, char>();
+        foreach (var item in str.ToLower())
+        {
+            if (Char.IsLetter(item))
+            {
+                latters.TryAdd(item, item);
+            }
+        }
+        if (latters.Count == 26)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/515decfd9dcfc23bb6000006/train/csharp
+    /// </summary>
+    /// <param name="ipAddres"></param>
+    /// <returns></returns>
+    public static bool IsValidIp(string ipAddres)
+    {
+        Regex rgx = new Regex(@"^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$");
+        return rgx.Match(ipAddres).Success;
+    }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/52597aa56021e91c93000cb0
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
     public static int[] MoveZeroes(int[] arr)
     {
         var newArr = new int[arr.Length];
@@ -26,6 +58,12 @@ public class Program
         }
         return newArr;
     }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/546f922b54af40e1e90001da
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     public static string AlphabetPosition(string text)
     {
         List<int> letters = new List<int>();
@@ -38,6 +76,11 @@ public class Program
         }
         return string.Concat(letters.ToString(), " ");
     }
+    /// <summary>
+    /// https://www.codewars.com/kata/52fba66badcd10859f00097e
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public static string Disemvowel(string str)
     {
         char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
@@ -51,6 +94,12 @@ public class Program
         }
         return newStr;
     }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/517abf86da9663f1d2000003
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public static string ToCamelCase(string str)
     {
         string[] words = str.Split('-', '_');
@@ -62,6 +111,12 @@ public class Program
         }
         return string.Concat(words);
     }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/5390bac347d09b7da40006f6
+    /// </summary>
+    /// <param name="phrase"></param>
+    /// <returns></returns>
     static string ToJadenCase(string phrase)
     {
         string[] words = phrase.Split(' ');
@@ -73,6 +128,12 @@ public class Program
         }
         return string.Join(" ", words);
     }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/541c8630095125aba6000c00
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
     static int DigitalRoot(long n)
     {
         string nString = n.ToString();
@@ -89,5 +150,20 @@ public class Program
             }
             return DigitalRoot(rezult);
         }
+    }
+
+    /// <summary>
+    /// https://www.codewars.com/kata/5601c5f6ba804403c7000004
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="z"></param>
+    /// <returns></returns>
+    public static double[] BarTriang(double[] x, double[] y, double[] z)
+    {
+        return new double[]{
+        Math.Round((x[0]+y[0]+z[0])/3, 4),
+        Math.Round((x[1]+y[1]+z[1])/3, 4),
+        };
     }
 }
