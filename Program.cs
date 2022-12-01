@@ -4,9 +4,69 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        
+        Console.WriteLine(IsSolved(new int[,] { { 1, 1, 1 }, { 0, 2, 2 }, { 0, 0, 0 } }));
     }
 
+
+    /// <summary>
+    /// https://www.codewars.com/kata/525caa5c1bf619d28c000335
+    /// </summary>
+    /// <param name="board"></param>
+    /// <returns></returns>
+    public static int IsSolved(int[,] board)
+    {
+        bool isWin = false;
+        static bool IsWin(int a, int b, int c) => (a == b && b == c && a !=0) ? true : false;
+        List<int> field = new List<int>();
+        foreach (var item in board)
+        {
+            field.Add(item);
+        }
+        if (isWin = IsWin(field[0], field[1], field[2]))
+            return field[0];
+        else if (isWin = IsWin(field[3], field[4], field[5]))
+            return field[3];
+        else if (isWin = IsWin(field[6], field[7], field[8]))
+            return field[0];
+        else if (isWin = IsWin(field[0], field[3], field[6]))
+            return field[0];
+        else if (isWin = IsWin(field[1], field[4], field[7]))
+            return field[1];
+        else if (isWin = IsWin(field[2], field[5], field[8]))
+            return field[2];
+        else if (isWin = IsWin(field[0], field[4], field[8]))
+            return field[0];
+        else if (isWin = IsWin(field[6], field[4], field[2]))
+            return field[6];
+
+        if(isWin == false && field.Contains(0))
+            return -1;
+        else
+            return 0;
+    }
+
+
+    /// <summary>
+    /// https://www.codewars.com/kata/5208f99aee097e6552000148/
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string BreakCamelCase(string str)
+    {
+        string newString = "";
+        foreach (var ch in str)
+        {
+            if (Char.IsUpper(ch))
+            {
+                newString += $" {ch}";
+            }
+            else
+            {
+                newString += ch;
+            }
+        }
+        return newString;
+    }
     /// <summary>
     /// https://www.codewars.com/kata/545cedaa9943f7fe7b000048
     /// </summary>
